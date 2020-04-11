@@ -1,71 +1,50 @@
 // use mouse click to start quiz
 var startButton = document.getElementById('start-quiz');
-startButton.textContent = "Start Quiz";
-
-var createQuiz = function() {
-    // create variables to store questions
-    var questions = [
-        {
-            question: 'Commonly used data types DO NOT include: ',
-            a1: '1. strings',
-            a2: '2. booleans',
-            a3: '3. alerts',
-            a4: '4. numbers',
-            correct: '3. alerts'
-        },
-        {
-            question: 'The condition in an if/else statement is enclosed within ______. ',
-            a1: '1. quotes',
-            a2: '2. curly brackets',
-            a3: '3. parentheses',
-            a4: '4. square brackets',
-            correct: '3. parentheses'
-        },
-        {
-            question: 'Arrays in JavaScript can be used to store _____. ',
-            a1: '1. numbers and strings',
-            a2: '2. other arrays',
-            a3: '3. booleans',
-            a4: '4. all of the above',
-            correct: '4. all of the above'
-        },
-        {
-            question: 'String values must be enclosed within ______ when being assigned to variables. ',
-            a1: '1. commas',
-            a2:'2. curly brackets',
-            a3:'3. quotes',
-            a4:'4. parentheses',
-            correct: '3. quotes'
-        },
-        {
-            question: 'A very useful tool used during development and debugging for printing content to debugger is: ',
-            a1: '1. JavaScript',
-            a2:'2. terminal/bash',
-            a3:'3. for loops',
-            a4:'4. console.log',
-            correct: '4. console.log'
-        }
-    ];
-}
-
+var quizContainer = document.getElementById('quiz-container');
+var questionsDiv = document.getElementById('questions-div');
+var olCreate = document.createElement("ol");
 
 // We start the game with a score of 0.
 var score = 0;
+var questionIndex = 0;
+
+// create variable with arrays to store questions
+var questions = [
+    {
+        question: 'Commonly used data types DO NOT include: ',
+        choices: ['1. strings', '2. booleans', '3. alerts', '4. numbers'],
+        answer: '3. alerts'
+    },
+    {
+        question: 'The condition in an if/else statement is enclosed within ______. ',
+        choices: ['1. quotes', '2. curly brackets', '3. parentheses', '4. square brackets'],
+        answer: '3. parentheses'
+    },
+    {
+        question: 'Arrays in JavaScript can be used to store _____. ',
+        choices: ['1. numbers and strings', '2. other arrays', '3. booleans', '4. all of the above'],
+        answer: '4. all of the above'
+    },
+    {
+        question: 'String values must be enclosed within ______ when being assigned to variables. ',
+        choices: ['1. commas', '2. curly brackets', '3. quotes', '4. parentheses'],
+        answer: '3. quotes'
+    },
+    {
+        question: 'A very useful tool used during development and debugging for printing content to debugger is: ',
+        choices: ['1. JavaScript', '2. terminal/bash', '3. for loops', '4. console.log'],
+        answer: '4. console.log'
+    }
+];
+
+
+// Renders questions and answer chocies to page
 
 // write for loops to cycle through quiz questions
-for (var i = 0; i < questions.length; i++) {
-    var answer = confirm(questions[i].question);
-    if(answer === true && answer === questions[i].correct) {
-        // increase score
-        score++;
-        alert("Correct!");
-    } else {
-        alert("Wrong!");
-    }
-}
+
 
 // show total score at end
-alert("You got " + score + "/" + questions.length);
+
 
 // use key press events to receive user input in form of answers to quiz questions
 
@@ -82,4 +61,4 @@ alert("You got " + score + "/" + questions.length);
 
 
 // add eventListeners here
-startButton.addEventListener('click', createQuiz);
+

@@ -10,33 +10,34 @@
 <header>
     <!--Create link to High Scores-->
     <a href="highscores.html">View Highscores</a>
+
     <!--Create timer countdown and float right-->
     <span id="timer" class="float-right">Time: 0</span>
 </header>
 
 <body>
-    <!--Intro to Coding Quiz Challenge Screen-->
-    <div class="intro" id="home">
-        <div class="justify-content-center">
-            <h1>Coding Quiz Challenge</h1><br>
-            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p><br>
+    <!--Quiz Content-->
+    <div id="quiz-container">
+        <!--Intro to Coding Quiz Screen-->
+        <div id="questions-div">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            <ol id="answerChoicesOl"></ol>
             <button type="button" id="start-quiz" class="btn-start">Start Quiz</button>
         </div>
     </div>
+    
+
     <!--Questions & Answers-->
-    <div class="questions-container" id="quiz">
+    <!-- <div class="questions-container" id="quiz">
         <div class="justify-content-center">
-            <h3 id="questions" class="q&a"></h3>
-            <ul id="answers" class="list-style">
-                <li class="answerChoice">1</li>
-                <li class="answerChoice">2</li>
-                <li class="answerChoice">3</li>
-                <li class="answerChoice">4</li>
-            </ul>
+            <h3 id="questions"></h3>
+            <div id="answers">
+            </div>
         </div>
-    </div>
+    </div> -->
     <!--Quiz is complete, now show and log high score by adding initials-->
-    <div class="highscore-container" id="submit-score">
+    <!-- <div class="highscore-container" id="submit-score">
         <div class="justify-content-center">
             <h2>All Done!</h2>
             <p id="user-score"></p>
@@ -46,7 +47,7 @@
                 <button type="button" class="btn-submit">Submit</button>
             </form>
         </div>
-    </div>
+    </div> -->
     
     <script src="./assets/js/script.js"></script>
 </body>
