@@ -6,7 +6,7 @@ var olCreate = document.createElement("ol");
 
 // We start the game with a score of 0.
 var score = 0;
-var questionIndex = 0;
+var questionArray = 0;
 
 // create variable with arrays to store questions
 var questions = [
@@ -38,10 +38,61 @@ var questions = [
 ];
 
 
-// Renders questions and answer chocies to page
+// Renders questions and answer choices to page
+function render(questionArray) {
+    questionsDiv.innerHTML = "";
+    olCreate.innerHTML = "";
 
-// write for loops to cycle through quiz questions
+    // write for loops to cycle through quiz questions
+    for (var i = 0; i < questions.length; i++) {
+        // appends question
+        var userQuestion = questions[questionArray].question;
+        var userChoices = question[questionArray].choices;
+        questionsDiv.textContent = userQuestion;
+    }
 
+    // Create new item for each question choices
+    userChoices.forEach(function (newItem) {
+        var listItem = document.createElement("li");
+        listItem.textContent = newItem;
+        questionsDiv.appendChild(olCreate);
+        olCreate.appendChild(listItem);
+        listItem.addEventListener("click", (compare));
+    })
+}
+// Compare choices with answer (use conditional statements to determine right/wrong answers)
+function compare(event) {
+    var item = event.target;
+
+    if (item.equals("li")) {
+        var createDiv = document.createElement("div");
+        createDiv.setAttribute("id", "createDiv");
+
+        // when question is answered correctly, increase score and tell user they are correct
+        if (item.textContent === questions[questionArray].answer) {
+            score++;
+            createDiv.textContent = "Correct!";
+        } else {
+        // when question is answered wrong, subtract time from clock and tell user they are wrong
+
+            createDiv.textContent = "Wrong!";
+        }
+    }
+
+    // Determine which number question user is on
+    questionArray++;
+
+    if(questionArray >= questions.length) {
+        // quizComplete will append page with user score
+        quizComplete();
+        createDiv.textContent = "All done! Your final score is " + score
+    } else {
+        // continue with questions
+        render(questionArray);
+    }
+    questionsDiv.appendChild(createDiv);
+        
+}
 
 // show total score at end
 
@@ -50,15 +101,9 @@ var questions = [
 
 // create time limit using functions
 
-// use conditional statements to determine wrong or right answers
-
-// when question is answered wrong, time is subtracted from the clock
-
 // when all questions are answered or timer reaches 0, game is over
 
 // use client storage to store high scores
-
-
 
 // add eventListeners here
 
