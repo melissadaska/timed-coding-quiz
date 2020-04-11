@@ -1,11 +1,12 @@
 // use mouse click to start quiz
 var startButton = document.getElementById('start-quiz');
+startButton.textContent = "Start Quiz";
 
 var createQuiz = function() {
     // create variables to store questions
     var questions = [
         {
-            q: 'Commonly used data types DO NOT include: ',
+            question: 'Commonly used data types DO NOT include: ',
             a1: '1. strings',
             a2: '2. booleans',
             a3: '3. alerts',
@@ -13,7 +14,7 @@ var createQuiz = function() {
             correct: '3. alerts'
         },
         {
-            q: 'The condition in an if/else statement is enclosed within ______. ',
+            question: 'The condition in an if/else statement is enclosed within ______. ',
             a1: '1. quotes',
             a2: '2. curly brackets',
             a3: '3. parentheses',
@@ -21,7 +22,7 @@ var createQuiz = function() {
             correct: '3. parentheses'
         },
         {
-            q: 'Arrays in JavaScript can be used to store _____. ',
+            question: 'Arrays in JavaScript can be used to store _____. ',
             a1: '1. numbers and strings',
             a2: '2. other arrays',
             a3: '3. booleans',
@@ -29,7 +30,7 @@ var createQuiz = function() {
             correct: '4. all of the above'
         },
         {
-            q: 'String values must be enclosed within ______ when being assigned to variables. ',
+            question: 'String values must be enclosed within ______ when being assigned to variables. ',
             a1: '1. commas',
             a2:'2. curly brackets',
             a3:'3. quotes',
@@ -37,7 +38,7 @@ var createQuiz = function() {
             correct: '3. quotes'
         },
         {
-            q: 'A very useful tool used during development and debugging for printing content to debugger is: ',
+            question: 'A very useful tool used during development and debugging for printing content to debugger is: ',
             a1: '1. JavaScript',
             a2:'2. terminal/bash',
             a3:'3. for loops',
@@ -53,7 +54,7 @@ var score = 0;
 
 // write for loops to cycle through quiz questions
 for (var i = 0; i < questions.length; i++) {
-    var answer = confirm(questions[i].q);
+    var answer = confirm(questions[i].question);
     if(answer === true && answer === questions[i].correct) {
         // increase score
         score++;
