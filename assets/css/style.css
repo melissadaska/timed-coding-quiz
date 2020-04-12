@@ -1,0 +1,18 @@
+.center {
+    text-align: center;
+    padding: 50px 600px;
+    flex-wrap: wrap;
+}
+
+nav {
+    padding: 30px 300px;
+}
+
+.float-right {
+    display: flex;
+    float: right;
+}
+
+.highscores-nav {
+    list-style-type: none;
+}
