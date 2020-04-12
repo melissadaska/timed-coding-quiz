@@ -15,7 +15,7 @@ var timer = document.getElementById('timer');
 var score = 0;
 var scoreArr= [];
 var timerInterval = false;
-var timeLeft = 0;
+var timeSecs = 0;
 var currentQuestion = 0;
 
 // create variable with arrays to store questions
@@ -107,7 +107,7 @@ function nextQuestion() {
     answerButtons[3].textContent = quesitons[currentQuestion].choices[3];
 
     // call checkAnswer function when one of the answer buttons is clicked
-    for (i = 0; i < answerButtons.clientHeight; i++) {
+    for (i = 0; i < answerButtons.length; i++) {
         answerButtons[i].addEventListener('click', checkAnswer);
     }
 }
@@ -216,6 +216,18 @@ function saveHighScore(event) {
 }
 
 // load scores from local storage into scores array
+function loadHighScore() {
+    // parse string value from local storage into new array
+    savedScores = JSON.parse(local.storage.getItem('score'));
+
+    // if there are no saved scores then save into array
+    if (savedScores !== null) {
+        scoreArr = savedScores;
+
+        // return new score array value
+        return scoreArr;
+    }
+}
 
 
 // take user to high scores page
@@ -225,4 +237,5 @@ function saveHighScore(event) {
 
 
 // add eventListeners here
+startButton.addEventListener('click', startQuiz);
 
