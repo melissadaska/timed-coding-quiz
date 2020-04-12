@@ -55,10 +55,20 @@ function countdown() {
         timer.textTextContent = timerSecs;
 
         // if user runs out of time, alert and end game
+        if (timerSecs < 1) {
+            timer.textContent = 0;
             // call end game
 
+            // clear timer
+            clearInterval(timerInterval);
+        };
+        
         // clear timer if current question is 5
-    })
+        if (currentQuestion === 5) {
+            timer.textContent = timerSecs;
+            clearInterval(timerInterval);
+        }
+    }, 1000)
 }
 
 // start the quiz
@@ -68,24 +78,46 @@ function startQuiz() {
     timer.textContent = timerSecs;
 
     // startCountdown
+    countdown();
 
-    // starts questions
+    // call starts questions
 
     // start button disappear when quiz starts
+    startButton.style.display = 'none';
 }
 
 // continue to next question
+function NextQuestion() {
 
-    // displays questions and answer choices to page
+    // add css styles to questions and answer choices to page
 
     // add contents of next page here
+    question.textContent = 'Question ' + (currentQuestion + 1);
+    question.textContent = questions[currentQuestion].question;
 
     // display answer buttons
-
+    quizAnswers.style.display = 'block';
 
     // assign answer options from questions array to each of answer buttons
+    answerButtons[0].textContent = questions[currentQuestion].choices[0];
+    answerButtons[1].textContent = questions[currentQuestion].choices[1];
+    answerButtons[2].textContent = questions[currentQuestion].choices[2];
+    answerButtons[3].textContent = quesitons[currentQuestion].choices[3];
 
     // call checkAnswer function when one of the answer buttons is clicked
+    for (i = 0; i < answerButtons.clientHeight; i++) {
+        answerButtons[i].addEventListener('click', checkAnswer);
+    }
+}
+
+    
+
+    
+
+    
+
+
+    
 
 
 
