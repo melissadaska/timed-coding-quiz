@@ -2,20 +2,20 @@
 var startButton = document.getElementById('start-quiz');
 var quizContainer = document.getElementById('quiz-container');
 var quizTitle = document.getElementById('quiz-title');
-var introP = document.getElementById('intro');
+var text= document.getElementById('text');
 var quizAnswers = document.getElementById('quiz-answers');
-var answerButtons = document.getElementById('answer-button');
+var answerButtons = document.getElementsByClassName('answer-button');
 var answerResponse = document.getElementById('answer-response');
 var userInput = document.getElementById('input-user')
 var initials = document.getElementById('initials');
 var submitUserInfo = document.getElementById('submit-button');
 var timer = document.getElementById('timer');
 
-// we start the with a score of 0, no time on the clock and on the 1st question
+// we start the with a score of 0, no time on the clock and question 0
 var score = 0;
 var scoreArr= [];
 var timerInterval = false;
-var timeSecs = 0;
+var timerSecs = 0;
 var currentQuestion = 0;
 
 // create variable with arrays to store questions
@@ -49,10 +49,10 @@ var questions = [
 
 // start Countdown
 function countdown() {
-    //use interval function that counts down
+    // use interval function that counts down
     timerInterval = setInterval(function() {
         timerSecs --;
-        timer.textTextContent = timerSecs;
+        timer.textContent = timerSecs;
 
         // if user runs out of time, alert and end game
         if (timerSecs < 1) {
@@ -91,11 +91,11 @@ function startQuiz() {
 // continue to next question
 function nextQuestion() {
 
-    // add css styles to questions and answer choices to page
+    // add necessary css styles
 
     // add contents of next page here
-    question.textContent = 'Question ' + (currentQuestion + 1);
-    question.textContent = questions[currentQuestion].question;
+    quizTitle.textContent = 'Question ' + (currentQuestion + 1);
+    text.textContent = questions[currentQuestion].question;
 
     // display answer buttons
     quizAnswers.style.display = 'block';
@@ -104,7 +104,7 @@ function nextQuestion() {
     answerButtons[0].textContent = questions[currentQuestion].choices[0];
     answerButtons[1].textContent = questions[currentQuestion].choices[1];
     answerButtons[2].textContent = questions[currentQuestion].choices[2];
-    answerButtons[3].textContent = quesitons[currentQuestion].choices[3];
+    answerButtons[3].textContent = questions[currentQuestion].choices[3];
 
     // call checkAnswer function when one of the answer buttons is clicked
     for (i = 0; i < answerButtons.length; i++) {
@@ -120,14 +120,14 @@ function checkAnswer(event) {
     if (event.target.textContent === questions[currentQuestion].answer) {
         answerResponse.style.display = 'block';
         answerResponse.textContent = 'Correct!';
-        answerResponse.className = 'answer-response'
+        // answerResponse.className = 'answer-response';
         currentQuestion++;
         score++;
 
         // answer response will disappear after set time
         setTimeout(function(){
             answerResponse.style.display = 'none';
-        }, 500);
+        }, 800);
 
         // end game if user is currently on question 5
         if (currentQuestion === questions.length) {
@@ -144,12 +144,12 @@ function checkAnswer(event) {
         currentQuestion++;
         answerResponse.style.display = 'block';
         answerResponse.textContent = 'Incorrect!';
-        answerResponse.className = 'answer-response';
+        // answerResponse.className = 'answer-response';
 
         // answer response will disappear after set time
         setTimeout(function() {
             answerResponse.style.display = 'none';
-        }, 500);
+        }, 800);
 
         // end game if timer is less than 10 seconds, since the user gets deducted 10 from score for incorrect answers
         if (timerSecs < 10) {
@@ -157,9 +157,10 @@ function checkAnswer(event) {
             // call end quiz
             endQuiz;
 
-        // or end game if user is on question 5
+        // else end game if user is on question 5
         } else if (currentQuestion === 5) {
-            // call end game
+            // call end quiz
+            endQuiz();
         
         // else subtract time from timer and move to next question
         } else {
@@ -172,7 +173,7 @@ function checkAnswer(event) {
 // end of quiz
 function endQuiz() {
 
-    // add css styles to end page
+    // add necessary css styles to end page
 
     // change display to end page display
     quizAnswers.style.display = 'none';
@@ -181,19 +182,20 @@ function endQuiz() {
 
     // either let user know they ran out of time or that they are all done with quiz
     if (timerSecs <= 0) {
-        question.textContent = 'You ran out of time!';
+        quizTitle.textContent = 'You ran out of time!';
     } else {
-        question.textContent = "All done!";
+        quizTitle.textContent = "All done!";
     }
 
     // initials are stored and user is brought to highScore page when submit button clicked
-    submitButton.addEventListener('click', saveHighScore());
+    submitUserInfo.addEventListener('click', saveHighScore());
+    submitUserInfo.hidden()
 }
     
 
 // save high score
 function saveHighScore(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     // if user does not put info in, nothing happens
     if (initials.value.length === 0) {
@@ -218,7 +220,7 @@ function saveHighScore(event) {
 // load scores from local storage into scores array
 function loadHighScore() {
     // parse string value from local storage into new array
-    savedScores = JSON.parse(local.storage.getItem('score'));
+    savedScores = JSON.parse(localStorage.getItem('score'));
 
     // if there are no saved scores then save into array
     if (savedScores !== null) {
@@ -235,6 +237,7 @@ function loadHighScore() {
 
 // view high scores
 
+loadHighScore();
 
 // add eventListeners here
 startButton.addEventListener('click', startQuiz);
