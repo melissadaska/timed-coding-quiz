@@ -1,4 +1,4 @@
-// use mouse click to start quiz
+// create variables
 var startButton = document.getElementById('start-quiz');
 var quizContainer = document.getElementById('quiz-container');
 var quizTitle = document.getElementById('quiz-title');
@@ -10,6 +10,8 @@ var userInput = document.getElementById('input-user')
 var initials = document.getElementById('initials');
 var submitUserInfo = document.getElementById('submit-button');
 var timer = document.getElementById('timer');
+var nav = document.querySelector('nav');
+var highscores = document.getElementById('highscores-nav');
 
 // we start the with a score of 0, no time on the clock and question 0
 var score = 0;
@@ -18,7 +20,11 @@ var timerInterval = false;
 var timerSecs = 0;
 var currentQuestion = 0;
 
-// create variable with arrays to store questions
+// hide userInput and quiz answers from main page
+userInput.style.display = 'none';
+quizAnswers.style.display = 'none';
+
+// create variable questions with choices arrays to store questions and answer choices
 var questions = [
     {
         question: 'Commonly used data types DO NOT include: ',
@@ -70,6 +76,7 @@ function countdown() {
             clearInterval(timerInterval);
         }
     }, 1000)
+
 }
 
 // start the quiz
@@ -86,6 +93,9 @@ function startQuiz() {
 
     // start button disappear when quiz starts
     startButton.style.display = 'none';
+
+    userInput.style.display = 'none';
+
 }
 
 // continue to next question
@@ -212,8 +222,8 @@ function saveHighScore(event) {
         // make array a string and save to localStorage
         localStorage.setItem('score', JSON.stringify(scoreArr));
 
-        // take user to highscore page
         // call highScores()
+        highScores();
     }
 }
 
@@ -236,9 +246,46 @@ function loadHighScore() {
 
 
 // view high scores
+function highScores() {
+    // clears timerInterval if countdown has been initiated
+    if (timerInterval) {
+        clearInterval(timerInterval);
+    };
+
+    // creates new list and return button element and append to container
+    var ul = document.createElement('ul');
+    var returnButton = document.createElement('button');
+    returnButton.textContent = 'Go Back';
+    container.appendChild(ul);
+    container.appendChild(returnButton);
+
+    // removes nav and other elements
+    startButton.style.display = 'none';
+    nav.style.visibility = 'hidden';
+    quizTitle.textContent = 'High Scores';
+    text.textContent = '';
+    quizAnswers.style.display = 'none';
+    userInput.style.display = 'none';
+
+    // render a new li for each highscore
+    for (i = 0; i < scoreArr.length; i++) {
+        var score = scoreArr[i].userName + ' : ' + scoreArr[i].userScore;
+
+        li = document.createElement('li');
+        li.textContent = score;
+        ul.appendChild(li);
+    }
+
+    // add event listener for return button to bring user back to index.html
+    returnButton.addEventListener('click', function() {
+        location.href = 'index.html'
+    });
+};
+
 
 loadHighScore();
 
-// add eventListeners here
+// add other eventListeners here
 startButton.addEventListener('click', startQuiz);
+highscores.addEventListener('click', highScores);
 
