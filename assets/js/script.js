@@ -110,37 +110,72 @@ function NextQuestion() {
     }
 }
 
-    
-
-    
-
-    
-
-
-    
-
-
-
 
  // check answer to see if chosen answer matches the correct answer
+function checkAnswer(event) {
 
     // if CORRECT answer is chosen, inform user it's correct, increase score and current question
+    if (event.target.textContent === questions[currentQuestion].answer) {
+        answerResponse.style.display = 'block';
+        answerResponse.textContent = 'Correct!';
+        answerResponse.className = 'answer-response'
+        currentQuestion++;
+        score++;
+
+        // answer response will disappear after set time
+        setTimeout(function(){
+            answerResponse.style.display = 'none';
+        }, 500);
+
+        // end game if user is currently on question 5
+        if (currentQuestion === questions.length) {
+            // call end quiz
+          
+        // else go to next question    
+        } else {
+            NextQuestion();
+        };
+
+    // else if answer chosen is INCORRECT decrease timer and increase current question
+    } else {
+        currentQuestion++;
+        answerResponse.style.display = 'block';
+        answerResponse.textContent = 'Incorrect!';
+        answerResponse.className = 'answer-response';
+
+        // answer response will disappear after set time
+        setTimeout(function() {
+            answerResponse.style.display = 'none';
+        }, 500);
+
+        // end game if timer is less than 10 seconds, since the user gets deducted 10 from score for incorrect answers
+        if (timerSecs < 10) {
+            timerSecs -= 10;
+            // call end game
+
+        // or end game if user is on question 5
+        } else if (currentQuestion === 5) {
+            // call end game
+        
+        // else subtract time from timer and move to next question
+        } else {
+            timerSecs -= 10;
+            NextQuestion();
+        };
+    }
+
+};
 
 
-    // answer response will disappear after set time
-
-    // end game if user is currently on question 5
-
-    // else continue to next question
 
 
 
-    // if answer chosen is INCORRECT decrease timer and increase current question
+    
 
 
-    // answer response will disappear after set time
+    
 
-    // end game if timer is less than 10 seconds, since the user gets deducted 10 from score for incorrect answers
+    
 
     // end game if user is currently on question 5
 
