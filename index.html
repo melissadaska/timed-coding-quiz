@@ -7,47 +7,37 @@
     <title>Timed Coding Quiz Challenge</title>
 </head>
 
-<header>
+<body>
+
     <!--Create link to High Scores-->
     <a href="highscores.html">View Highscores</a>
 
     <!--Create timer countdown and float right-->
-    <span id="timer" class="float-right">Time: 0</span>
-</header>
+    <div id="timer" class="float-right">Time: 0</div>
 
-<body>
+
     <!--Quiz Content-->
-    <div id="quiz-container">
+    <div id="quiz-container" class="">
         <!--Intro to Coding Quiz Screen-->
-        <div id="questions-div">
-            <h1>Coding Quiz Challenge</h1>
-            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-            <ol id="answerChoicesOl"></ol>
-            <button type="button" id="start-quiz" class="btn-start">Start Quiz</button>
+        <div id="quiz-title" class="h1">Coding Quiz Challenge</div>
+        <p id="intro">
+            Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+        </p>
+            
+        <button type="button" id="start-quiz" class="btn-start">Start Quiz</button>
+        <div id="quiz-answers">
+            <button class="answer-button"></button>
+            <button class="answer-button"></button>
+            <button class="answer-button"></button>
+            <button class="answer-button"></button>
+        </div>
+        <div id="answer-response"></div>
+        <div id="input-user">
+            <label for="initials">Enter Initials:</label>
+            <input type="text" name="initials" id="initials" placeholder="ex. Melissa" />
+            <button id="submit-button">Submit</button>
         </div>
     </div>
-    
-
-    <!--Questions & Answers-->
-    <!-- <div class="questions-container" id="quiz">
-        <div class="justify-content-center">
-            <h3 id="questions"></h3>
-            <div id="answers">
-            </div>
-        </div>
-    </div> -->
-    <!--Quiz is complete, now show and log high score by adding initials-->
-    <!-- <div class="highscore-container" id="submit-score">
-        <div class="justify-content-center">
-            <h2>All Done!</h2>
-            <p id="user-score"></p>
-            <form class="form-group">
-                <label for="new-score">Enter Initials</label>
-                <input type="text" id="userName">
-                <button type="button" class="btn-submit">Submit</button>
-            </form>
-        </div>
-    </div> -->
     
     <script src="./assets/js/script.js"></script>
 </body>
