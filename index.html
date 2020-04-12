@@ -10,17 +10,15 @@
 
 <body>
 
-    <!--Create link to High Scores-->
     <nav>
+        <!--Create link to High Scores-->
         <a href id="highscores-nav">View Highscores</a>
+        <!--Create timer countdown and float right-->
+        <div id="timer" class="float-right">Time: 0</div>
     </nav>
 
-    <!--Create timer countdown and float right-->
-    <div id="timer" class="float-right">Time: 0</div>
-
-
     <!--Quiz Content-->
-    <div id="quiz-container">
+    <div id="quiz-container" class="center">
         <!--Intro to Coding Quiz Screen-->
         <div id="quiz-title">Coding Quiz Challenge</div>
         <p id="text">
@@ -37,7 +35,7 @@
         <div id="answer-response"></div>
         <div id="input-user">
             <label for="initials">Enter Initials:</label>
-            <input type="text" name="initials" id="initials" placeholder="ex. Melissa" />
+            <input type="text" name="initials" id="initials" placeholder="ex. M" />
             <button id="submit-button">Submit</button>
         </div>
     </div>

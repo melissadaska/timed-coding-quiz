@@ -194,18 +194,18 @@ function endQuiz() {
     if (timerSecs <= 0) {
         quizTitle.textContent = 'You ran out of time!';
     } else {
-        quizTitle.textContent = "All done!";
+        quizTitle.textContent = "Quiz Over!";
     }
 
-    // initials are stored and user is brought to highScore page when submit button clicked
-    submitUserInfo.addEventListener('click', saveHighScore());
-    submitUserInfo.hidden()
+    // initials and high score are stored when submit button clicked
+    submitUserInfo.addEventListener('click', saveHighScore);
 }
     
 
 // save high score
 function saveHighScore(event) {
-    // event.preventDefault();
+
+    event.preventDefault();
 
     // if user does not put info in, nothing happens
     if (initials.value.length === 0) {
@@ -222,17 +222,18 @@ function saveHighScore(event) {
         // make array a string and save to localStorage
         localStorage.setItem('score', JSON.stringify(scoreArr));
 
-        // call highScores()
+        // take user to high scores
         highScores();
     }
 }
 
 // load scores from local storage into scores array
 function loadHighScore() {
+
     // parse string value from local storage into new array
     savedScores = JSON.parse(localStorage.getItem('score'));
 
-    // if there are no saved scores then save into array
+    // if there are no saved scores then save into score array
     if (savedScores !== null) {
         scoreArr = savedScores;
 
@@ -242,22 +243,20 @@ function loadHighScore() {
 }
 
 
-// take user to high scores page
-
-
 // view high scores
 function highScores() {
+    event.preventDefault();
     // clears timerInterval if countdown has been initiated
     if (timerInterval) {
         clearInterval(timerInterval);
     };
 
     // creates new list and return button element and append to container
-    var ul = document.createElement('ul');
+    var ol = document.createElement('ol');
     var returnButton = document.createElement('button');
     returnButton.textContent = 'Go Back';
-    container.appendChild(ul);
-    container.appendChild(returnButton);
+    quizContainer.appendChild(ol);
+    quizContainer.appendChild(returnButton);
 
     // removes nav and other elements
     startButton.style.display = 'none';
@@ -273,7 +272,7 @@ function highScores() {
 
         li = document.createElement('li');
         li.textContent = score;
-        ul.appendChild(li);
+        ol.appendChild(li);
     }
 
     // add event listener for return button to bring user back to index.html
