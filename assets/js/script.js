@@ -1,12 +1,22 @@
 // use mouse click to start quiz
 var startButton = document.getElementById('start-quiz');
 var quizContainer = document.getElementById('quiz-container');
-var questionsDiv = document.getElementById('questions-div');
-var olCreate = document.createElement("ol");
+var quizTitle = document.getElementById('quiz-title');
+var introP = document.getElementById('intro');
+var quizAnswers = document.getElementById('quiz-answers');
+var answerButtons = document.getElementById('answer-button');
+var answerResponse = document.getElementById('answer-response');
+var userInput = document.getElementById('input-user')
+var initials = document.getElementById('initials');
+var submitUserInfo = document.getElementById('submit-button');
+var timer = document.getElementById('timer');
 
-// We start the game with a score of 0.
+// we start the with a score of 0, no time on the clock and on the 1st question
 var score = 0;
-var questionArray = 0;
+var scoreArr= [];
+var timerInterval = false;
+var timeLeft = 0;
+var currentQuestion = 0;
 
 // create variable with arrays to store questions
 var questions = [
@@ -37,73 +47,91 @@ var questions = [
     }
 ];
 
+// start Countdown
+function countdown() {
+    //use interval function that counts down
+    timerInterval = setInterval(function() {
+        timerSecs --;
+        timer.textTextContent = timerSecs;
 
-// Renders questions and answer choices to page
-function render(questionArray) {
-    questionsDiv.innerHTML = "";
-    olCreate.innerHTML = "";
+        // if user runs out of time, alert and end game
+            // call end game
 
-    // write for loops to cycle through quiz questions
-    for (var i = 0; i < questions.length; i++) {
-        // appends question
-        var userQuestion = questions[questionArray].question;
-        var userChoices = question[questionArray].choices;
-        questionsDiv.textContent = userQuestion;
-    }
-
-    // Create new item for each question choices
-    userChoices.forEach(function (newItem) {
-        var listItem = document.createElement("li");
-        listItem.textContent = newItem;
-        questionsDiv.appendChild(olCreate);
-        olCreate.appendChild(listItem);
-        listItem.addEventListener("click", (compare));
+        // clear timer if current question is 5
     })
 }
-// Compare choices with answer (use conditional statements to determine right/wrong answers)
-function compare(event) {
-    var item = event.target;
 
-    if (item.equals("li")) {
-        var createDiv = document.createElement("div");
-        createDiv.setAttribute("id", "createDiv");
+// start the quiz
+function startQuiz() {
+    // timer starts at 75 seconds
+    timerSecs = 75;
+    timer.textContent = timerSecs;
 
-        // when question is answered correctly, increase score and tell user they are correct
-        if (item.textContent === questions[questionArray].answer) {
-            score++;
-            createDiv.textContent = "Correct!";
-        } else {
-        // when question is answered wrong, subtract time from clock and tell user they are wrong
+    // startCountdown
 
-            createDiv.textContent = "Wrong!";
-        }
-    }
+    // starts questions
 
-    // Determine which number question user is on
-    questionArray++;
-
-    if(questionArray >= questions.length) {
-        // quizComplete will append page with user score
-        quizComplete();
-        createDiv.textContent = "All done! Your final score is " + score
-    } else {
-        // continue with questions
-        render(questionArray);
-    }
-    questionsDiv.appendChild(createDiv);
-        
+    // start button disappear when quiz starts
 }
 
-// show total score at end
+// continue to next question
+
+    // displays questions and answer choices to page
+
+    // add contents of next page here
+
+    // display answer buttons
 
 
-// use key press events to receive user input in form of answers to quiz questions
+    // assign answer options from questions array to each of answer buttons
 
-// create time limit using functions
+    // call checkAnswer function when one of the answer buttons is clicked
 
-// when all questions are answered or timer reaches 0, game is over
+
+
+
+ // check answer to see if chosen answer matches the correct answer
+
+    // if CORRECT answer is chosen, inform user it's correct, increase score and current question
+
+
+    // answer response will disappear after set time
+
+    // end game if user is currently on question 5
+
+    // else continue to next question
+
+
+
+    // if answer chosen is INCORRECT decrease timer and increase current question
+
+
+    // answer response will disappear after set time
+
+    // end game if timer is less than 10 seconds, since the user gets deducted 10 from score for incorrect answers
+
+    // end game if user is currently on question 5
+
+    // else continue to next question
+
+
+// end of quiz
+
+
+    // change display to end page display
+
+    // initials are stored when submit button is clicked
+
 
 // use client storage to store high scores
+// take user to high scores page
+
+
+// load scores from local storage into scores array
+
+
+// view high scores
+
 
 // add eventListeners here
 
