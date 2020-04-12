@@ -163,31 +163,30 @@ function checkAnswer(event) {
             NextQuestion();
         };
     }
-
 };
 
-
-
-
-
-    
-
-
-    
-
-    
-
-    // end game if user is currently on question 5
-
-    // else continue to next question
-
-
 // end of quiz
+function endGame() {
 
+    // add css styles to end page
 
     // change display to end page display
+    quizAnswers.style.display = 'none';
+    text.textContent = "Your final score is " + score + ".";
+    userInput.style.display = 'block';
 
-    // initials are stored when submit button is clicked
+    // either let user know they ran out of time or that they are all done with quiz
+    if (timerSecs <= 0)
+    {
+        question.textContent = 'You ran out of time!';
+    } else {
+        question.textContent = "All done!";
+    }
+
+    // initials are stored and user is brought to highScore page when submit button clicked
+    submitButton.addEventListener('click', //call saveHighScore);
+}
+    
 
 
 // use client storage to store high scores
