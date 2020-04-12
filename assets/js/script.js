@@ -57,7 +57,8 @@ function countdown() {
         // if user runs out of time, alert and end game
         if (timerSecs < 1) {
             timer.textContent = 0;
-            // call end game
+            // call end quiz
+            endQuiz();
 
             // clear timer
             clearInterval(timerInterval);
@@ -80,14 +81,15 @@ function startQuiz() {
     // startCountdown
     countdown();
 
-    // call starts questions
+    // call nextQuestion() to start questions
+    nextQuestion();
 
     // start button disappear when quiz starts
     startButton.style.display = 'none';
 }
 
 // continue to next question
-function NextQuestion() {
+function nextQuestion() {
 
     // add css styles to questions and answer choices to page
 
@@ -130,10 +132,11 @@ function checkAnswer(event) {
         // end game if user is currently on question 5
         if (currentQuestion === questions.length) {
             // call end quiz
+            endQuiz();
           
         // else go to next question    
         } else {
-            NextQuestion();
+            nextQuestion();
         };
 
     // else if answer chosen is INCORRECT decrease timer and increase current question
@@ -151,7 +154,8 @@ function checkAnswer(event) {
         // end game if timer is less than 10 seconds, since the user gets deducted 10 from score for incorrect answers
         if (timerSecs < 10) {
             timerSecs -= 10;
-            // call end game
+            // call end quiz
+            endQuiz;
 
         // or end game if user is on question 5
         } else if (currentQuestion === 5) {
@@ -160,13 +164,13 @@ function checkAnswer(event) {
         // else subtract time from timer and move to next question
         } else {
             timerSecs -= 10;
-            NextQuestion();
+            nextQuestion();
         };
     }
 };
 
 // end of quiz
-function endGame() {
+function endQuiz() {
 
     // add css styles to end page
 
@@ -176,24 +180,45 @@ function endGame() {
     userInput.style.display = 'block';
 
     // either let user know they ran out of time or that they are all done with quiz
-    if (timerSecs <= 0)
-    {
+    if (timerSecs <= 0) {
         question.textContent = 'You ran out of time!';
     } else {
         question.textContent = "All done!";
     }
 
     // initials are stored and user is brought to highScore page when submit button clicked
-    submitButton.addEventListener('click', //call saveHighScore);
+    submitButton.addEventListener('click', saveHighScore());
 }
     
 
+// save high score
+function saveHighScore(event) {
+    event.preventDefault();
 
-// use client storage to store high scores
-// take user to high scores page
+    // if user does not put info in, nothing happens
+    if (initials.value.length === 0) {
+        return
 
+    // else save new high score    
+    } else {
+        newScore = {
+            userName: initials.value.trim(),
+            userScore: score
+        };
+        scoreArr.push(newScore);
+
+        // make array a string and save to localStorage
+        localStorage.setItem('score', JSON.stringify(scoreArr));
+
+        // take user to highscore page
+        // call highScores()
+    }
+}
 
 // load scores from local storage into scores array
+
+
+// take user to high scores page
 
 
 // view high scores
