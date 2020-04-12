@@ -1,11 +1,13 @@
 .center {
     text-align: center;
-    padding: 50px 600px;
+    padding: 50px 700px;
     flex-wrap: wrap;
+    font-family: Verdana;
 }
 
 nav {
     padding: 30px 300px;
+    font-family: Verdana;
 }
 
 .float-right {
@@ -15,4 +17,15 @@ nav {
 
 .highscores-nav {
     list-style-type: none;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.answer-button, .begin, .submit-button {
+    background-color: purple;
+    color: white;
+    
 }
