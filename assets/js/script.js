@@ -219,6 +219,9 @@ function saveHighScore(event) {
         };
         scoreArr.push(newScore);
 
+        // sort array so that highest score is on top
+        scoreArr.sort((a, b) => b.userScore - a.userScore);
+
         // make array a string and save to localStorage
         localStorage.setItem('score', JSON.stringify(scoreArr));
 
@@ -269,7 +272,8 @@ function highScores() {
     quizAnswers.style.display = 'none';
     userInput.style.display = 'none';
 
-    // render a new li for each highscore
+    // render a new li for each highscore, sort in order of highscores
+
     for (i = 0; i < scoreArr.length; i++) {
         var score = scoreArr[i].userName + ' : ' + scoreArr[i].userScore;
 
