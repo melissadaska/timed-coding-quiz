@@ -254,9 +254,12 @@ function highScores() {
     // creates new list and return button element and append to container
     var ol = document.createElement('ol');
     var returnButton = document.createElement('button');
+    var clearButton = document.createElement('button');
     returnButton.textContent = 'Go Back';
+    clearButton.textContent = 'Clear High Scores';
     quizContainer.appendChild(ol);
     quizContainer.appendChild(returnButton);
+    quizContainer.appendChild(clearButton);
 
     // removes nav and other elements
     startButton.style.display = 'none';
@@ -278,6 +281,12 @@ function highScores() {
     // add event listener for return button to bring user back to index.html
     returnButton.addEventListener('click', function() {
         location.href = 'index.html'
+    });
+
+    // add event listener for clear button to clear high scores
+    clearButton.addEventListener('click', function() {
+        localStorage.clear();
+        ol.innerHTML = '';
     });
 };
 
